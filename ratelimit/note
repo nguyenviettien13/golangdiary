@@ -1,0 +1,12 @@
+###Nhung kien thuc khai thac duoc tu chuong trinh
+Khi ta muon mot viec lap di lap lai sau moi khoang thoi gian
+Vd: cu sau moi khoang thoi gian 1 tuan toi lai goi dien ve nha
+    ta se su dung TICKER time.Tick()...
+    +tao ra mot ticker
+    +Luon doi khi nao ticker xuat hien cai la "goi dien" luon
+    ???Van de: Lam the nao de qua trinh do luon lap di lap lai-> su dung mot vong lap vo han
+###Van de 2: Khi so luong request vuot qua muc luu tru thi van de giai quyet the nao
+    Khi ma bufferchannel full thi viec send se bi block
+    Khi ma bufferchannel empty thi viec receive cung bi block
+    Giaiphap: Khi chuong trinh bi qua tai, nhung request vao se bi block va cu 200ms ta lai thu nhet
+    request vao xem co duoc khong? neu duoc thi oki con khong thi tiep tuc bi block

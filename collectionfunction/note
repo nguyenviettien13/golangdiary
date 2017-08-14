@@ -1,0 +1,10 @@
+###
+Cac khai bao mot mang cac string
+fs := make([]string, 10)
+
+###
+Cach truyen ham nhu la mot tham so
+func Filter(strs []string,f func(string) bool) []string {
+}
+
+###

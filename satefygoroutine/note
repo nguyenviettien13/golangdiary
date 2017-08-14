@@ -1,0 +1,12 @@
+###vande1
+    Cau lenh select case
+    Cau lenh select cho phep 1 goroutine giao tiep 1 hoac nhieu goroutine
+    Select block until mot trong cac case can run, neu trong truong hop nhieu case ready thi no se rundom mot trong cac case
+    default case: trong truong hop tat ca cac case deu bi block thi no se chon default case
+### Hoat dong cua chuong trinh
+    +Co mot thang o giua dieu khien hoat dong cua 2 thang con lai (write va read)
+    +Write: tao ra mot writeOp truyen cho no 2 tham so sau do gui doi tuong writeOp cho ben thu 3 de no cap resp
+    sau do ben nay bat dau tao
+    +Read: tao ra mot doi tong readOp truyen key cho no, sau do nem cho thang thu 3 lay lay resp = map[key]
+    Chu y rang o day gia tri duoc truyen di qua channel la pointer dan den goroutine co the thay doi gia tri cua cac resource tren cac
+    goroutine khac

@@ -1,0 +1,10 @@
+### De khai bao mutex
+var mutex = &sync.Mutex{}
+### Ham loadUint64
+variable := atomic.LoadUint64(&readOps)
+### Datarace xay ra khi nhieu goroutine cung truy cap vao mot source trong do co nhieu thao tac write
+    De tranh su co nay ta su dung mutex
+    hoat dong:
+        +ta gan tai nguyen voi mot mutex
+        +truoc khi dung ta lock mutex lai
+        +dung xong lock mutex ra

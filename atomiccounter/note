@@ -1,0 +1,1 @@
+Ham tang atomic.AddUint64(&ops, 1)

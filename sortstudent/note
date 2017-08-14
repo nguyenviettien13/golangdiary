@@ -1,0 +1,18 @@
+####
+Khi muon sap xep mot mang kieu XXX thi ta phai cho kieu do implement mot interface gom
+3 ham do la Swap, len va Less
+#####func (s ByLength) Len() int {
+#####    return len(s)
+#####}
+#####func (s ByLength) Swap(i, j int) {
+#####    s[i], s[j] = s[j], s[i]
+#####}
+2 ham tren gan nhu khong doi doi voi cac kieu du lieu khac nhau
+Ham Less la ham quan trong nhat ma ta can quan tam, no se quyet dinh ham se sap xep theo tieu
+chi nao
+####func (s ByLength) Less(i, j int) bool {
+####    return len(s[i]) < len(s[j])
+####}
+TA SE HIEU HAM LESS HOAT DONG NHU SAU: SAU KHI SAP XEP XONG NHE, THI CAC PHAN TU O VI TRI i SE CO
+DAC DIEM GI SO VOI PHAN TU O VI TRI THU j
+vi du tren: sau khi sap xep phan tu thu i se co do dai chuoi nho hon do dai chuoi cua phan tu thu j

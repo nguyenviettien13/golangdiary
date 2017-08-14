@@ -1,0 +1,104 @@
+###Problemchannel
+Co su khac biet giua channel va channel buffering
+Channel se block ca sender va receive cho den khi ca 2 san sang!
+Nhung cau lenh sau sender va receive se bi block
+De tranh tinh trang deadlock thi send va receive phai o 2 goroutine khac nhau
+
+###Ticker
+ticker thuc chat cung la mot channel, khi tao ra mot ticker thi dong thoi hieu la ticker dang chay tren mot goroutine khac
+Co the xem vi du trong ticker directory
+###range over channel
+range se only chay mot luot khi range qua channel da bi dong
+=========================================
+ratelimit:
+###Nhung kien thuc khai thac duoc tu chuong trinh
+Khi ta muon mot viec lap di lap lai sau moi khoang thoi gian
+Vd: cu sau moi khoang thoi gian 1 tuan toi lai goi dien ve nha
+    ta se su dung TICKER time.Tick()...
+    +tao ra mot ticker
+    +Luon doi khi nao ticker xuat hien cai la "goi dien" luon
+    ???Van de: Lam the nao de qua trinh do luon lap di lap lai-> su dung mot vong lap vo han
+###Van de 2: Khi so luong request vuot qua muc luu tru thi van de giai quyet the nao
+    Khi ma bufferchannel full thi viec send se bi block
+    Khi ma bufferchannel empty thi viec receive cung bi block
+    Giaiphap: Khi chuong trinh bi qua tai, nhung request vao se bi block va cu 200ms ta lai thu nhet
+    request vao xem co duoc khong? neu duoc thi oki con khong thi tiep tuc bi block
+===================================
+###
+Tao mot goroutine
+go func(){
+         }()
+Hang tang mot bien len mot luong delta
+atomic.AddUint64(&ops, 1)
+===================================
+mutex
+### De khai bao mutex
+var mutex = &sync.Mutex{}
+### Ham loadUint64
+variable := atomic.LoadUint64(&readOps)
+### Datarace xay ra khi nhieu goroutine cung truy cap vao mot source trong do co nhieu thao tac write
+    De tranh su co nay ta su dung mutex
+    hoat dong:
+        +ta gan tai nguyen voi mot mutex
+        +truoc khi dung ta lock mutex lai
+        +dung xong lock mutex ra
+===============================
+safegoroutine
+###vande1
+    Cau lenh select case
+    Cau lenh select cho phep 1 goroutine giao tiep 1 hoac nhieu goroutine
+    Select block until mot trong cac case can run, neu trong truong hop nhieu case ready thi no se rundom mot trong cac case
+    default case: trong truong hop tat ca cac case deu bi block thi no se chon default case
+### Hoat dong cua chuong trinh
+    +Co mot thang o giua dieu khien hoat dong cua 2 thang con lai (write va read)
+    +Write: tao ra mot writeOp truyen cho no 2 tham so sau do gui doi tuong writeOp cho ben thu 3 de no cap resp
+    sau do ben nay bat dau tao
+    +Read: tao ra mot doi tong readOp truyen key cho no, sau do nem cho thang thu 3 lay lay resp = map[key]
+    Chu y rang o day gia tri duoc truyen di qua channel la pointer dan den goroutine co the thay doi gia tri cua cac resource tren cac
+    goroutine khac
+===============================
+sorting
+###package sort duoc implement cho tat ca cac kieu du lieu ca builtin trong golang va
+    ca cac kieu du lieu do nguoi dung define
+    trong vi du nay thi ta xem xet cac ham sort da duoc xay dung cho cac kieu du lieu builtin
+===============================
+sortstudent
+Minh co the sap xep mot mang cac sinh vien theo tieu tri tuoi, do dai ten, alphabet
+####
+Khi muon sap xep mot mang kieu XXX thi ta phai cho kieu do implement mot interface gom
+3 ham do la Swap, len va Less
+#####func (s ByLength) Len() int {
+#####    return len(s)
+#####}
+#####func (s ByLength) Swap(i, j int) {
+#####    s[i], s[j] = s[j], s[i]
+#####}
+2 ham tren gan nhu khong doi doi voi cac kieu du lieu khac nhau
+Ham Less la ham quan trong nhat ma ta can quan tam, no se quyet dinh ham se sap xep theo tieu
+chi nao
+####func (s ByLength) Less(i, j int) bool {
+####    return len(s[i]) < len(s[j])
+####}
+TA SE HIEU HAM LESS HOAT DONG NHU SAU: SAU KHI SAP XEP XONG NHE, THI CAC PHAN TU O VI TRI i SE CO
+DAC DIEM GI SO VOI PHAN TU O VI TRI THU j
+vi du tren: sau khi sap xep phan tu thu i se co do dai chuoi nho hon do dai chuoi cua phan tu thu j
+
+Chu y: De sap xep cac sau theo thu tu ta su dung cach so sanh chuoi vi du: "abc"<"def"
+Da co vi du minh hoa o trong phan chuong trinh sortstudent
+==========================
+###panic
+Khi gap loi (chay qua panic) thi chuong trinh se ket thuc o status non-zero
+===========================
+defer
+ham goi trong defer se duoc thuc thi khi chuan bi ket thuc ham main
+===========================
+collection function
+###
+Cac khai bao mot mang cac string
+fs := make([]string, 10)
+
+###
+Cach truyen ham nhu la mot tham so
+func Filter(strs []string,f func(string) bool) []string {
+}
+==========================
